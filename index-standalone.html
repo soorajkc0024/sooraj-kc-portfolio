@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOORAJ. | 3D Artist & Cinematographer</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'cinematic-bg': '#0a0a0a',
+            'cinematic-gray': '#1c1c1c',
+            'cinematic-accent': '#d4a373',
+            'cinematic-text': '#e5e5e5',
+            'cinematic-muted': '#888888',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @layer utilities {
+      .text-glow { text-shadow: 0 0 20px rgba(212, 163, 115, 0.5); }
+      .cinematic-shadow { box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 163, 115, 0.1); }
+      .hover-cinematic-glow { transition: all 0.4s ease; }
+      .hover-cinematic-glow:hover {
+        box-shadow: 0 0 30px rgba(212, 163, 115, 0.2), inset 0 0 10px rgba(212, 163, 115, 0.1);
+        border-color: rgba(212, 163, 115, 0.5);
+      }
+    }
+    body { margin: 0; padding: 0; overflow-x: hidden; background-color: #0a0a0a; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #d4a373; }
+  </style>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Framer Motion CDN -->
+  <script src="https://unpkg.com/framer-motion@11/dist/framer-motion.js"></script>
+</head>
+<body class="bg-cinematic-bg text-cinematic-text font-sans antialiased selection:bg-cinematic-accent selection:text-cinematic-bg">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+    const { motion, useScroll, useTransform, useMotionValueEvent } = window.Motion;
+
+    const Navbar = () => (
+      <motion.nav 
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="fixed top-0 left-0 right-0 z-50 py-6 px-8 md:px-16 flex justify-between items-center bg-cinematic-bg/80 backdrop-blur-md border-b border-cinematic-gray/50"
+      >
+        <div className="text-xl md:text-2xl font-bold tracking-tight text-white">Hi! I am SOORAJ.</div>
+        <div className="hidden md:flex items-center space-x-12 text-sm uppercase tracking-widest font-medium text-cinematic-muted">
+          <a href="#work" className="hover:text-cinematic-accent transition-colors duration-300">Work</a>
+          <a href="#stack" className="hover:text-cinematic-accent transition-colors duration-300">Stack</a>
+          <a href="#contact" className="hover:text-cinematic-accent transition-colors duration-300">Contact</a>
+        </div>
+      </motion.nav>
+    );
+
+    const FRAME_COUNT = 124;
+    const IMAGES_DIR = './images/herosectiontwo';
+
+    const Hero = () => {
+      const canvasRef = useRef(null);
+      const containerRef = useRef(null);
+      const [images, setImages] = useState([]);
+      
+      const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+      });
+
+      useEffect(() => {
+        const loadedImages = [];
+        let loadedCount = 0;
+
+        for (let i = 0; i < FRAME_COUNT; i++) {
+          const img = new Image();
+          const num = i.toString().padStart(3, '0');
+          img.src = `${IMAGES_DIR}/grlow seq${num}.png`;
+          
+          img.onload = () => {
+            loadedCount++;
+            if (loadedCount === FRAME_COUNT) {
+              if (canvasRef.current) {
+                drawFrame(0, loadedImages);
+              }
+            }
+          };
+          loadedImages.push(img);
+        }
+        setImages(loadedImages);
+      }, []);
+
+      const drawFrame = (index, imageArray = images) => {
+        if (!canvasRef.current || !imageArray[index] || !imageArray[index].complete) return;
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const img = imageArray[index];
+        if (img.width === 0 || img.height === 0) return;
+
+        const canvasRatio = canvas.width / canvas.height;
+        const imgRatio = img.width / img.height;
+        
+        let drawWidth = canvas.width;
+        let drawHeight = canvas.height;
+        let offsetX = 0;
+        let offsetY = 0;
+        
+        if (canvasRatio > imgRatio) {
+          drawHeight = canvas.width / imgRatio;
+          offsetY = (canvas.height - drawHeight) / 2;
+        } else {
+          drawWidth = canvas.height * imgRatio;
+          offsetX = (canvas.width - drawWidth) / 2;
+        }
+        
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      };
+
+      const frameIndex = useTransform(scrollYProgress, [0, 1], [0, FRAME_COUNT - 1]);
+      
+      useMotionValueEvent(frameIndex, "change", (latest) => {
+        drawFrame(Math.floor(latest));
+      });
+
+      useEffect(() => {
+        const handleResize = () => {
+          drawFrame(Math.floor(frameIndex.get()));
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }, [images, frameIndex]);
+
+      useEffect(() => {
+        if (images.length > 0 && images[0].complete) {
+          drawFrame(0);
+        }
+      }, [images]);
+
+      const text1Opacity = useTransform(scrollYProgress, [0, 0.1, 0.2, 0.3], [1, 1, 0, 0]);
+      const text1Y = useTransform(scrollYProgress, [0, 0.2], [0, -50]);
+      const text1PointerEvents = useTransform(scrollYProgress, (v) => v < 0.2 ? 'auto' : 'none');
+
+      const text2Opacity = useTransform(scrollYProgress, [0.2, 0.3, 0.5, 0.6], [0, 1, 1, 0]);
+      const text2Y = useTransform(scrollYProgress, [0.2, 0.3, 0.5, 0.6], [50, 0, 0, -50]);
+      const text2PointerEvents = useTransform(scrollYProgress, (v) => (v >= 0.2 && v < 0.6) ? 'auto' : 'none');
+
+      const text3Opacity = useTransform(scrollYProgress, [0.5, 0.6, 0.8, 0.9], [0, 1, 1, 0]);
+      const text3Y = useTransform(scrollYProgress, [0.5, 0.6, 0.8, 0.9], [50, 0, 0, -50]);
+      const text3PointerEvents = useTransform(scrollYProgress, (v) => v >= 0.5 ? 'auto' : 'none');
+
+      return (
+        <section ref={containerRef} className="relative w-full h-[400vh] bg-cinematic-bg">
+          <div className="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center md:justify-start px-8 md:px-24">
+            <canvas ref={canvasRef} className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity opacity-40" />
+            <div className="absolute inset-0 bg-gradient-radial from-transparent via-cinematic-bg/50 to-cinematic-bg pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-cinematic-bg via-transparent to-transparent pointer-events-none"></div>
+
+            <div className="relative z-10 w-full max-w-4xl text-center md:text-left pt-20 h-full flex flex-col justify-center">
+              <motion.div style={{ opacity: text1Opacity, y: text1Y, pointerEvents: text1PointerEvents }} className="absolute inset-x-0 md:inset-auto md:w-full px-8 md:px-0">
+                <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">
+                  Hi! I am <br/> <span className="text-cinematic-accent/90">Sooraj.</span>
+                </h1>
+                <p className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0">
+                  A 3D Artist focused on cinematography.
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <span className="animate-bounce text-cinematic-text/50 uppercase tracking-widest text-xs">Scroll to explore ↓</span>
+                </div>
+              </motion.div>
+
+              <motion.div style={{ opacity: text2Opacity, y: text2Y, pointerEvents: text2PointerEvents }} className="absolute inset-x-0 md:inset-auto md:w-full px-8 md:px-0">
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">Atmospheric Environments</h2>
+                <p className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0">
+                  Building immersive worlds that captivate the audience.
+                </p>
+              </motion.div>
+
+              <motion.div style={{ opacity: text3Opacity, y: text3Y, pointerEvents: text3PointerEvents }} className="absolute inset-x-0 md:inset-auto md:w-full px-8 md:px-0">
+                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">Intricate Details</h2>
+                <p className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0">
+                  Every pixel meticulously crafted for perfection.
+                </p>
+                <div className="flex justify-center md:justify-start">
+                  <button className="px-10 py-4 mt-8 bg-transparent border border-cinematic-text/30 text-white font-medium uppercase tracking-[0.2em] text-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:border-cinematic-accent transition-all duration-400 group relative overflow-hidden">
+                    <span className="relative z-10 group-hover:text-cinematic-accent transition-colors duration-400">View Showreel</span>
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const Tools = () => {
+      useEffect(() => { lucide.createIcons(); }, []);
+      const tools = [
+        { name: 'Blender', icon: 'box', color: 'hover:text-[#ea7600]' },
+        { name: 'Unreal Engine', icon: 'monitor-play', color: 'hover:text-[#ffffff]' },
+        { name: 'Marvelous Designer', icon: 'scissors', color: 'hover:text-[#ffde00]' },
+        { name: 'Adobe Premiere Pro', icon: 'video', color: 'hover:text-[#9999ff]' },
+        { name: 'DaVinci Resolve', icon: 'wand-2', color: 'hover:text-[#ff4f4f]' },
+        { name: 'Adobe Substance Painter', icon: 'paintbrush', color: 'hover:text-[#ff4f4f]' }
+      ];
+
+      const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.15 } } };
+      const itemVariants = { hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } };
+
+      return (
+        <section id="stack" className="w-full py-32 px-8 md:px-24 bg-cinematic-bg border-t border-cinematic-gray/30 overflow-hidden">
+          <div className="max-w-7xl mx-auto">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-20 text-center md:text-left">
+              <h2 className="text-xs uppercase tracking-[0.3em] text-cinematic-accent mb-4 font-bold">Pipeline</h2>
+              <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Tools of the Trade</h3>
+            </motion.div>
+            <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center justify-items-center">
+              {tools.map((tool, index) => (
+                <motion.div key={index} variants={itemVariants} className="group flex flex-col items-center justify-center space-y-4 cursor-pointer">
+                  <div className={`text-cinematic-muted/50 transition-colors duration-500 ease-in-out ${tool.color}`}>
+                    <i data-lucide={tool.icon} style={{width: 56, height: 56, strokeWidth: 1.5}}></i>
+                  </div>
+                  <span className="text-xs tracking-widest uppercase font-medium text-cinematic-muted/50 group-hover:text-cinematic-text transition-colors duration-500">
+                    {tool.name}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+      );
+    };
+
+    const Portfolio = () => {
+      const projects = [
+        { id: 1, title: 'Neon Echoes', category: 'Lighting & LookDev', image: 'src/assets/work_1.png' },
+        { id: 2, title: 'Abyssal Sector', category: 'Environment Design', image: 'src/assets/work_2.png' },
+        { id: 3, title: 'Project KRONOS', category: 'Character & Prop Modeling', image: 'src/assets/work_3.png' },
+        { id: 4, title: 'Monolith', category: 'Architectural Visualization', image: 'src/assets/work_4.png' }
+      ];
+
+      return (
+        <section id="work" className="w-full py-32 px-4 md:px-12 lg:px-24 bg-[#050505] overflow-hidden">
+          <div className="max-w-[1400px] mx-auto">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="mb-20 flex flex-col md:flex-row md:items-end justify-between border-b border-cinematic-gray/50 pb-10">
+              <div>
+                <h2 className="text-xs uppercase tracking-[0.3em] text-cinematic-accent mb-4 font-bold">Selected Works</h2>
+                <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tight">Portfolio</h3>
+              </div>
+              <div className="mt-8 md:mt-0 text-cinematic-muted text-sm tracking-widest uppercase">[ 2024 - 2026 ]</div>
+            </motion.div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+              {projects.map((p, index) => (
+                <motion.div key={p.id} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }} className="group cursor-pointer">
+                  <div className="relative w-full overflow-hidden bg-cinematic-gray aspect-video md:aspect-[21/9] mb-6 cinematic-shadow">
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+                    <img src={p.image} alt={p.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out" />
+                  </div>
+                  <div className="flex flex-col space-y-2 px-2">
+                    <h4 className="text-2xl font-bold text-white tracking-tight group-hover:text-cinematic-accent transition-colors duration-300">{p.title}</h4>
+                    <p className="text-sm font-light text-cinematic-muted tracking-wide font-serif italic">{p.category}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }} className="mt-24 text-center">
+              <button className="px-12 py-5 border border-cinematic-gray text-cinematic-text uppercase tracking-[0.2em] text-xs hover:border-cinematic-accent hover:text-white transition-all duration-300">
+                View All Projects
+              </button>
+            </motion.div>
+          </div>
+        </section>
+      );
+    };
+
+    const Footer = () => {
+      useEffect(() => { lucide.createIcons(); }, []);
+      return (
+        <footer id="contact" className="w-full bg-[#030303] pt-32 pb-12 px-8 md:px-24 border-t border-cinematic-gray/20 overflow-hidden">
+          <div className="max-w-7xl mx-auto flex flex-col items-center">
+            <motion.h2 initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} className="text-4xl md:text-6xl lg:text-8xl font-bold text-white tracking-tighter mb-12 text-center">
+              Let's create something <br/> <span className="text-cinematic-accent italic font-serif font-light">cinematic.</span>
+            </motion.h2>
+            <motion.a initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.4 }} href="mailto:hello@sooraj.com" className="text-lg md:text-xl text-cinematic-muted hover:text-white transition-colors duration-300 mb-20 pb-2 border-b border-cinematic-gray hover:border-cinematic-accent inline-flex items-center gap-3">
+              <i data-lucide="mail" style={{width: 20, height: 20}}></i> hello@sooraj.com
+            </motion.a>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.6 }} className="w-full flex flex-col md:flex-row justify-between items-center pt-8 border-t border-cinematic-gray/30 space-y-6 md:space-y-0">
+              <div className="text-cinematic-muted text-xs tracking-widest uppercase">© 2026 Sooraj. All rights reserved.</div>
+              <div className="flex space-x-8">
+                <a href="#" className="text-cinematic-muted hover:text-white transition-colors duration-300 flex items-center gap-2 group">
+                  <span className="w-8 h-8 rounded-full border border-cinematic-gray flex items-center justify-center group-hover:border-cinematic-accent transition-colors duration-300">
+                    <i data-lucide="instagram" style={{width: 14, height: 14}}></i>
+                  </span>
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </footer>
+      );
+    };
+
+    const App = () => (
+      <div className="min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <Tools />
+          <Portfolio />
+        </main>
+        <Footer />
+      </div>
+    );
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
