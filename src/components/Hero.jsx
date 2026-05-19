@@ -142,7 +142,7 @@ const Hero = () => {
             className="absolute inset-x-0 md:inset-auto md:w-full px-8 md:px-0"
           >
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">
-              Hi! I am <br /> <span className="text-[#a256ff]">Sooraj</span>
+              Hi! I am <br /> <span className="bg-gradient-to-r from-[#6d1bff] via-[#a256ff] to-[#d5b3ff] bg-clip-text text-transparent inline-block">Sooraj</span>
             </h1>
             <p className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 max-w-2xl font-sans mx-auto md:mx-0">
               3D Artist.
@@ -186,7 +186,7 @@ const Hero = () => {
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">
               Ex jobs
             </h2>
-            <ul className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0 list-none space-y-3">
+            <ul className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0 list-none space-y-3 text-left w-fit md:w-auto">
               <li><span className="text-[#a256ff] mr-3">✦</span>Just completed digree (you could be the first)</li>
               <li><span className="text-[#a256ff] mr-3">✦</span></li>
               <li><span className="text-[#a256ff] mr-3">✦</span></li>

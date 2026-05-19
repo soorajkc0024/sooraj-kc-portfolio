@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -29,13 +30,98 @@ const Navbar = () => {
         </div>
 
         <div className="md:hidden flex items-center">
-          <button className="text-cinematic-text hover:text-cinematic-accent focus:outline-none">
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="text-cinematic-text hover:text-cinematic-accent focus:outline-none"
+            aria-label="Open Menu"
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
       </motion.nav>
+
+      {/* Mobile Menu Overlay / Side Drawer */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+              onClick={() => setIsMenuOpen(false)}
+            />
+
+            {/* Sidebar drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-[75%] max-w-sm bg-cinematic-bg border-l border-cinematic-gray/50 px-8 py-20 flex flex-col justify-between md:hidden shadow-2xl"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="absolute top-6 right-8 text-cinematic-text hover:text-cinematic-accent transition-colors duration-300"
+                aria-label="Close Menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
+              {/* Menu items */}
+              <div className="flex flex-col space-y-8 text-lg uppercase tracking-widest font-medium mt-10">
+                <a
+                  href="#work"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-cinematic-muted hover:text-cinematic-accent transition-colors duration-300 py-2 border-b border-cinematic-gray/20"
+                >
+                  Work
+                </a>
+                <button
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsAboutOpen(true);
+                  }}
+                  className="text-left text-cinematic-muted hover:text-cinematic-accent transition-colors duration-300 py-2 border-b border-cinematic-gray/20 uppercase tracking-widest font-medium"
+                >
+                  About
+                </button>
+                <a
+                  href="#skills"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-cinematic-muted hover:text-cinematic-accent transition-colors duration-300 py-2 border-b border-cinematic-gray/20"
+                >
+                  Skills
+                </a>
+                <a
+                  href="#contact"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-cinematic-muted hover:text-cinematic-accent transition-colors duration-300 py-2 border-b border-cinematic-gray/20"
+                >
+                  Contact
+                </a>
+              </div>
+
+              {/* Drawer Footer info */}
+              <div className="flex flex-col space-y-2">
+                <div className="text-xs tracking-widest uppercase text-cinematic-muted/50 font-medium">
+                  Sooraj KC
+                </div>
+                <div className="text-[10px] tracking-widest uppercase text-cinematic-accent/60 font-serif italic lowercase">
+                  portfolio
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* About Overlay */}
       <AnimatePresence>
