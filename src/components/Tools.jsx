@@ -20,6 +20,7 @@ const Tools = () => {
     { name: 'Premiere Pro', image: '/images/softwarelogo/prlogo.png' },
     { name: 'DaVinci Resolve', image: '/images/softwarelogo/davicilogo.png' },
     { name: 'Substance Painter', image: '/images/softwarelogo/substanceplogo.png' },
+    { name: 'EmberGen', image: '/images/softwarelogo/embergenlogo.png' },
     { name: 'Photoshop', image: '/images/softwarelogo/pslogo.png' },
   ];
 

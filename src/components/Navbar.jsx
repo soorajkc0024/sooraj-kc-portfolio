@@ -157,19 +157,19 @@ const Navbar = () => {
                   Hi iam Sooraj KC, a 3d artist from kerala, india.
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I mainly focus on creating realistic and cinimatic scenes(loves to try others too).
+                  I mainly focus on creating realistic and cinematic scenes(loves to try others too).
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl whitespace-pre-wrap">
                   When I work on a project I will be really obsessed with it until isee the end. I always try to create better projects and I really like to try out new tools and softwares.
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I always try to create better projects.
+                  .................................
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
                   I am good at problem solving and always keep the deadline
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I did my digree in Bsc animation and vfx
+                  I did my degree in Bsc animation and vfx
                 </p>
               </motion.div>
             </div>

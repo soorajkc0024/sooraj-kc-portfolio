@@ -200,13 +200,19 @@ const Portfolio = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-24 text-center"
+          className="mt-24 flex flex-col items-center gap-6"
         >
           <button
             onClick={() => setShowAllProjects(!showAllProjects)}
             className="px-12 py-5 border border-cinematic-gray text-cinematic-text uppercase tracking-[0.2em] text-xs hover:border-cinematic-accent hover:text-white transition-all duration-300"
           >
             {showAllProjects ? 'View Less' : 'View All Projects'}
+          </button>
+          <button 
+            onClick={() => setSelectedVideo('/videos/otherwrk/Soorajshowreel.mp4')}
+            className="px-10 py-4 bg-transparent border border-cinematic-text/30 text-white font-medium uppercase tracking-[0.2em] text-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:border-cinematic-accent transition-all duration-400 group relative overflow-hidden"
+          >
+            <span className="relative z-10 group-hover:text-cinematic-accent transition-colors duration-400">View Showreel</span>
           </button>
         </motion.div>
       </div>
