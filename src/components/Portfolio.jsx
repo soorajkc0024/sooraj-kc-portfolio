@@ -34,6 +34,7 @@ const Portfolio = () => {
       image: '/images/thumbnail/jeager.png',
       video: '/videos/mainworks/pasaficrim.mp4',
       logos: ['blenderlogo.png', 'davicilogo.png', 'substanceplogo.png'],
+      youtubeUrl: 'https://youtu.be/yPuIBQQHOkE',
       btsMedia: [
         { type: 'image', url: '/bts/pasafic/fusion.png' },
         { type: 'video', url: '/bts/pasafic/handrig.mp4' },
@@ -52,6 +53,7 @@ const Portfolio = () => {
       image: '/images/thumbnail/knight.png',
       video: '/videos/mainworks/knight.mp4',
       logos: ['blenderlogo.png', 'uelogo.png', 'marvelousdlogo.png', 'substanceplogo.png', 'davicilogo.png', 'prlogo.png'],
+      youtubeUrl: 'https://youtu.be/xxbg3RKU4iI',
       btsMedia: [
         { type: 'image', url: '/bts/knight/kfusion.png' },
         { type: 'image', url: '/bts/knight/kvp1.png' },
@@ -72,6 +74,7 @@ const Portfolio = () => {
       image: '/images/thumbnail/origami.png',
       video: '/videos/wrkvd/origami.mp4',
       logos: ['blenderlogo.png', 'marvelousdlogo.png', 'prlogo.png'],
+      youtubeUrl: 'https://youtu.be/iyMaUTo2q4k',
       btsMedia: [
         { type: 'image', url: '/bts/orugami/editing.png' },
         { type: 'image', url: '/bts/orugami/ovp1.png' },
@@ -87,6 +90,7 @@ const Portfolio = () => {
       image: '/images/thumbnail/patric.png',
       video: '/videos/mainworks/webslinger.mp4',
       logos: ['blenderlogo.png', 'uelogo.png', 'substanceplogo.png', 'davicilogo.png'],
+      youtubeUrl: 'https://youtu.be/hhqKLhxOnQ0',
       btsMedia: [
         { type: 'image', url: '/bts/webslinger/aniseqence.png' },
         { type: 'image', url: '/bts/webslinger/editing.png' },
@@ -107,6 +111,14 @@ const Portfolio = () => {
       logos: ['blenderlogo.png'],
     },
   ];
+
+  const selectedProjectYoutubeUrl = (() => {
+    if (selectedVideo === '/videos/otherwrk/Soorajshowreel.mp4') {
+      return 'https://youtu.be/1GzH9CYjPV4';
+    }
+    const project = projects.find(p => p.video === selectedVideo);
+    return project?.youtubeUrl || null;
+  })();
 
   return (
     <section id="work" ref={containerRef} className="w-full py-32 px-4 md:px-12 lg:px-24 bg-[#050505] overflow-hidden">
@@ -168,13 +180,27 @@ const Portfolio = () => {
                       ))}
                     </div>
                   )}
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 items-center">
                     <button
                       onClick={(e) => { e.stopPropagation(); setSelectedVideo(project.video); }}
                       className="px-4 py-2 border border-white/30 text-white text-xs uppercase tracking-widest hover:border-cinematic-accent transition-colors duration-300"
                     >
                       Play Video
                     </button>
+                    {project.youtubeUrl && (
+                      <a
+                        href={project.youtubeUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-4 py-2 border border-white/30 text-white text-xs uppercase tracking-widest hover:border-cinematic-accent transition-colors duration-300 flex items-center gap-2"
+                      >
+                        <svg className="w-3 h-3 md:w-3.5 md:h-3.5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                        YouTube
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -208,7 +234,7 @@ const Portfolio = () => {
           >
             {showAllProjects ? 'View Less' : 'View All Projects'}
           </button>
-          <button 
+          <button
             onClick={() => setSelectedVideo('/videos/otherwrk/Soorajshowreel.mp4')}
             className="px-10 py-4 bg-transparent border border-cinematic-text/30 text-white font-medium uppercase tracking-[0.2em] text-sm hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:border-cinematic-accent transition-all duration-400 group relative overflow-hidden"
           >
@@ -228,11 +254,25 @@ const Portfolio = () => {
           >
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-8 right-8 text-white z-50 text-xl font-sans uppercase tracking-widest hover:text-cinematic-accent transition-colors"
+              className="absolute top-4 right-4 md:top-8 md:right-8 text-white z-50 text-sm md:text-xl font-sans uppercase tracking-widest hover:text-cinematic-accent transition-colors"
             >
               Close
             </button>
-            
+
+            {selectedProjectYoutubeUrl && (
+              <a
+                href={selectedProjectYoutubeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute top-4 left-4 md:top-8 md:left-8 text-white z-50 text-xs md:text-sm font-sans uppercase tracking-widest hover:text-cinematic-accent transition-all duration-300 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 border border-white/10 hover:border-cinematic-accent bg-black/40 backdrop-blur-sm rounded"
+              >
+                <svg className="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                Watch on YouTube
+              </a>
+            )}
+
             <div className="w-full max-w-6xl flex flex-col items-center">
               {/* Quality Compression Warning Banner */}
               <div className="flex items-center gap-3 bg-cinematic-gray/80 border border-cinematic-accent/35 rounded px-4 py-3 text-cinematic-text/90 text-xs md:text-sm tracking-wide shadow-2xl mb-6 max-w-fit animate-fade-in backdrop-blur-md">
@@ -241,7 +281,7 @@ const Portfolio = () => {
                   <line x1="12" y1="9" x2="12" y2="13" />
                   <line x1="12" y1="17" x2="12.01" y2="17" />
                 </svg>
-                <span>The quality of the video is not at best due to compression for the website.</span>
+                <span>The quality of the video is not at best due to compression for the website. Watch in youtube for better quality </span>
               </div>
 
               <motion.video
@@ -269,7 +309,7 @@ const Portfolio = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm"
           >
-            <div 
+            <div
               className="absolute inset-0 overflow-y-auto py-12 flex items-center justify-center"
               onClick={(e) => {
                 if (e.target === e.currentTarget) setSelectedBtsProject(null);

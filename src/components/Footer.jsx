@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Instagram, Linkedin, Mail, Phone } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Phone, Youtube } from 'lucide-react';
 
 const WhatsappIcon = ({ size = 14 }) => (
   <svg
@@ -93,6 +93,12 @@ const Footer = () => {
                 <Linkedin size={14} />
               </span>
               <span className="text-xs uppercase tracking-widest sr-only md:not-sr-only md:inline-block">LinkedIn</span>
+            </a>
+            <a href="https://www.youtube.com/@Sooraj0024" target="_blank" rel="noopener noreferrer" className="text-cinematic-muted hover:text-white transition-colors duration-300 flex items-center gap-2 group">
+              <span className="w-8 h-8 rounded-full border border-cinematic-gray flex items-center justify-center group-hover:border-cinematic-accent transition-colors duration-300">
+                <Youtube size={14} />
+              </span>
+              <span className="text-xs uppercase tracking-widest sr-only md:not-sr-only md:inline-block">YouTube</span>
             </a>
           </div>
         </motion.div>
