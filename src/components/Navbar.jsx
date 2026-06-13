@@ -166,7 +166,7 @@ const Navbar = () => {
                   .................................
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I am good at problem solving and always keep the deadline
+                  I am good at problem solving and always keep a work plan
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
                   I did my degree in Bsc animation and vfx
