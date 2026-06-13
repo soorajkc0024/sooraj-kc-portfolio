@@ -171,7 +171,7 @@ const Navbar = () => {
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
                   I did my degree in Bsc animation and vfx
                 </p>
-                <div className="pt-6">
+                <div className="pt-6 flex flex-wrap gap-4 justify-center">
                   <a
                     href="/images/cv/Sooraj kc CV.pdf"
                     target="_blank"
@@ -197,6 +197,29 @@ const Navbar = () => {
                       <path d="M16 17H8" />
                     </svg>
                     View CV
+                  </a>
+                  <a
+                    href="/images/cv/Sooraj kc CV.pdf"
+                    download="Sooraj kc CV.pdf"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/25 hover:border-cinematic-accent text-white font-semibold uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:text-cinematic-accent transition-all duration-400 group rounded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="group-hover:translate-y-[2px] transition-transform duration-300"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                      <polyline points="7 10 12 15 17 10" />
+                      <line x1="12" x2="12" y1="15" y2="3" />
+                    </svg>
+                    Download CV
                   </a>
                 </div>
               </motion.div>
