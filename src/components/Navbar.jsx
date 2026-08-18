@@ -173,7 +173,7 @@ const Navbar = () => {
               </p>
               <div className="pt-6 flex flex-wrap gap-4 justify-center">
                 <a
-                  href="/images/cv/Sooraj kc CV.pdf"
+                  href="/images/cv/Sooraj kc CV.pdf?v=2"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/25 hover:border-cinematic-accent text-white font-semibold uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:text-cinematic-accent transition-all duration-400 group rounded"
