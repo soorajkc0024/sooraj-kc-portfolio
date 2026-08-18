@@ -198,12 +198,12 @@ const Hero = () => {
             className="absolute inset-x-0 md:inset-auto md:w-full px-8 md:px-0"
           >
             <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-white leading-none mb-6 font-sans">
-              Ex jobs
+              EXPERIENCE
             </h2>
             <ul className="text-xl md:text-2xl lg:text-3xl font-light text-cinematic-text/80 mb-12 max-w-2xl font-serif italic mx-auto md:mx-0 list-none space-y-3 text-left w-fit md:w-auto">
-              <li><span className="text-[#a256ff] mr-3">✦</span>Just completed degree (you could be the first)</li>
-              <li><span className="text-[#a256ff] mr-3">✦</span></li>
-              <li><span className="text-[#a256ff] mr-3">✦</span></li>
+              <li><span className="text-[#a256ff] mr-3">✦</span>6 Months inernship at vismayasmax studio</li>
+              <li><span className="text-[#a256ff] mr-3">✦</span>6 Months freelance</li>
+              <li><span className="text-[#a256ff] mr-3">✦</span>1 Year personal projects</li>
               <li><span className="text-[#a256ff] mr-3">✦</span></li>
             </ul>
           </motion.div>
@@ -235,7 +235,7 @@ const Hero = () => {
                 className="text-white text-xs md:text-sm font-sans uppercase tracking-widest hover:text-cinematic-accent transition-all duration-300 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 border border-white/10 hover:border-cinematic-accent bg-black/40 backdrop-blur-sm rounded"
               >
                 <svg className="w-4 h-4 md:w-5 md:h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.388.555a3.002 3.002 0 0 0-2.11 2.108C0 8.03 0 12 0 12s0 3.97.502 5.837a3.003 3.003 0 0 0 2.11 2.108C4.48 20.5 12 20.5 12 20.5s7.52 0 9.388-.555a3.003 3.003 0 0 0 2.11-2.108C24 15.97 24 12 24 12s0-3.97-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
                 Watch on YouTube
               </a>
