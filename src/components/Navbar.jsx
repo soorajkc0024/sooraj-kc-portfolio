@@ -160,50 +160,50 @@ const Navbar = () => {
                   I mainly focus on creating realistic and cinematic scenes(loves to try others too).
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl whitespace-pre-wrap">
-                  When I work on a project I will be really obsessed with it until isee the end. I always try to create better projects and I really like to try out new tools and softwares.
+                  When I work on a project I will be really obsessed with it until i see the end result. I always try to create better projects and I really like to try out new tools and softwares.
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
                   .................................
                 </p>
                 <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I am good at problem solving and always keep a work plan
+                  I did my degree in Bsc animation and vfx from vismayasmax college
                 </p>
-                <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
-                  I did my degree in Bsc animation and vfx
-                </p>
-                <div className="pt-6 flex flex-wrap gap-4 justify-center">
-                  <a
-                    href="/images/cv/Sooraj kc CV.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/25 hover:border-cinematic-accent text-white font-semibold uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:text-cinematic-accent transition-all duration-400 group rounded"
+              <p className="text-base md:text-xl font-light leading-relaxed max-w-3xl">
+                get in touch with me for any other info
+              </p>
+              <div className="pt-6 flex flex-wrap gap-4 justify-center">
+                <a
+                  href="/images/cv/Sooraj kc CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-white/25 hover:border-cinematic-accent text-white font-semibold uppercase tracking-[0.2em] text-xs hover:shadow-[0_0_25px_rgba(255,255,255,0.05)] hover:text-cinematic-accent transition-all duration-400 group rounded"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="group-hover:translate-y-[-2px] transition-transform duration-300"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="group-hover:translate-y-[-2px] transition-transform duration-300"
-                    >
-                      <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
-                      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-                      <path d="M10 9H8" />
-                      <path d="M16 13H8" />
-                      <path d="M16 17H8" />
-                    </svg>
-                    View CV
-                  </a>
-                </div>
-              </motion.div>
-            </div>
+                    <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                    <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                    <path d="M10 9H8" />
+                    <path d="M16 13H8" />
+                    <path d="M16 17H8" />
+                  </svg>
+                  View CV
+                </a>
+              </div>
           </motion.div>
+            </div>
+    </motion.div >
         )}
-      </AnimatePresence>
+      </AnimatePresence >
     </>
   );
 };
