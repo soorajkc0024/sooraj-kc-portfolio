@@ -110,6 +110,15 @@ const Portfolio = () => {
       video: '/videos/otherwrk/clothingad.mp4',
       logos: ['blenderlogo.png'],
     },
+    {
+      id: 6,
+      title: 'House Of the Dragon',
+      category: 'cgi exercise',
+      description: 'A vfx shot inspired from house of the dragon.',
+      image: '/images/thumbnail/dragon.png',
+      video: '/videos/mainworks/dragon.mp4',
+      logos: ['blenderlogo.png', 'uelogo.png', 'davicilogo.png'],
+    }
   ];
 
   const selectedProjectYoutubeUrl = (() => {
@@ -232,7 +241,7 @@ const Portfolio = () => {
             onClick={() => setShowAllProjects(!showAllProjects)}
             className="px-12 py-5 border border-cinematic-gray text-cinematic-text uppercase tracking-[0.2em] text-xs hover:border-cinematic-accent hover:text-white transition-all duration-300"
           >
-            {showAllProjects ? 'View Less' : 'View All Projects'}
+            {showAllProjects ? 'View Less' : 'View More Projects'}
           </button>
           <button
             onClick={() => setSelectedVideo('/videos/otherwrk/Soorajshowreel.mp4')}
