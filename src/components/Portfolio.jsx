@@ -118,6 +118,7 @@ const Portfolio = () => {
       image: '/images/thumbnail/dragon.png',
       video: '/videos/mainworks/dragon.mp4',
       logos: ['blenderlogo.png', 'uelogo.png', 'davicilogo.png'],
+      youtubeUrl: 'https://youtu.be/OJY7vIykyfQ?si=_z67wuiGHDH6gosO',
     }
   ];
 
