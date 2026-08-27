@@ -229,7 +229,7 @@ const Hero = () => {
 
             <div className="absolute top-4 left-4 md:top-8 md:left-8 flex gap-3 items-center z-50">
               <a
-                href="https://youtu.be/1GzH9CYjPV4"
+                href="https://youtu.be/QDybp9S0l5U?si=I-cX5yo-cGM5bhdg"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white text-xs md:text-sm font-sans uppercase tracking-widest hover:text-cinematic-accent transition-all duration-300 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 border border-white/10 hover:border-cinematic-accent bg-black/40 backdrop-blur-sm rounded"
@@ -240,7 +240,7 @@ const Hero = () => {
                 Watch on YouTube
               </a>
               <a
-                href="https://vimeo.com/1200959420?share=copy&fl=sv&fe=ci"
+                href="https://vimeo.com/1221854750?fl=ip&fe=ec"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white text-xs md:text-sm font-sans uppercase tracking-widest hover:text-cinematic-accent transition-all duration-300 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 border border-white/10 hover:border-cinematic-accent bg-black/40 backdrop-blur-sm rounded"

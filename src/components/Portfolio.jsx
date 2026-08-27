@@ -114,7 +114,7 @@ const Portfolio = () => {
 
   const selectedProjectYoutubeUrl = (() => {
     if (selectedVideo === '/videos/otherwrk/Soorajshowreel.mp4') {
-      return 'https://youtu.be/1GzH9CYjPV4';
+      return 'https://youtu.be/QDybp9S0l5U?si=I-cX5yo-cGM5bhdg';
     }
     const project = projects.find(p => p.video === selectedVideo);
     return project?.youtubeUrl || null;
@@ -275,7 +275,7 @@ const Portfolio = () => {
               )}
               {selectedVideo === '/videos/otherwrk/Soorajshowreel.mp4' && (
                 <a
-                  href="https://vimeo.com/1200959420?share=copy&fl=sv&fe=ci"
+                  href="https://vimeo.com/1221854750?fl=ip&fe=ec"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-white text-xs md:text-sm font-sans uppercase tracking-widest hover:text-cinematic-accent transition-all duration-300 flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 border border-white/10 hover:border-cinematic-accent bg-black/40 backdrop-blur-sm rounded"
